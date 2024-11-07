@@ -1,5 +1,6 @@
 package edu.temple.funwithintents
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.ImageButton
@@ -15,7 +16,31 @@ class MainActivity : AppCompatActivity() {
 
         // When the user clicks this button, share the text if not empty
         findViewById<ImageButton>(R.id.shareImageButton).setOnClickListener {
-
+            if(editText !== null) {
+                val sendIntent = Intent()
+                sendIntent.action = Intent.ACTION_SEND
+                sendIntent.putExtra(Intent.EXTRA_TEXT, editText.text)
+                sendIntent.type = "text/plain"
+                if (sendIntent.resolveActivity(packageManager) != null) {
+                    startActivity(sendIntent)
+                }
+            }
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
